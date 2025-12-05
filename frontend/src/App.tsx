@@ -2,25 +2,12 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
-import Products from "./pages/Products";
 import Closeout from "./pages/Closeout";
 import AppShell from "./layout/AppShell";
 import DashboardHome from "./pages/DashboardHome";
 import NewProductPage from "./pages/NewProductPage"; // ← usa il file reale
-
-// Placeholder per la futura pagina Inventario
-function InventoryPagePlaceholder() {
-  return (
-    <div style={{ maxWidth: 700, margin: "0 auto" }}>
-      <h1 style={{ fontSize: 22, marginBottom: 8 }}>Inventario</h1>
-      <p style={{ fontSize: 14, color: "#9ca3af" }}>
-        Qui sposteremo la modalità “Inventario” attualmente dentro
-        <code> Products.tsx </code>. Per ora continua a usarla nella pagina
-        Magazzino.
-      </p>
-    </div>
-  );
-}
+import MagazzinoListPage from "./pages/MagazzinoListPage";
+import Inventario from "./pages/Inventario";
 
 // Protezione semplice basata sul token
 function RequireAuth({ children }: { children: React.ReactNode }) {
@@ -50,12 +37,9 @@ export default function App() {
           <Route path="home" element={<DashboardHome />} />
 
           {/* Magazzino */}
-          <Route path="magazzino" element={<Products />} />
+          <Route path="magazzino" element={<MagazzinoListPage />} />
           <Route path="magazzino/nuovo" element={<NewProductPage />} />
-          <Route
-            path="magazzino/inventario"
-            element={<InventoryPagePlaceholder />}
-          />
+          <Route path="magazzino/inventario" element={<Inventario />} />
 
           {/* Cassa */}
           <Route path="cassa/chiusure" element={<Closeout />} />

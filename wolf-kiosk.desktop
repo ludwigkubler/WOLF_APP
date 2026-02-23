@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Wolf POS Kiosk
+Comment=Sistema POS Wolf — avvio automatico kiosk
+Exec=/home/ludo/Scrivania/WOLF APP/wolf app/new/start-kiosk.sh
+Path=/home/ludo/Scrivania/WOLF APP/wolf app/new
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=5
+StartupNotify=false
+Terminal=false

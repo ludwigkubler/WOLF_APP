@@ -1,0 +1,36 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# wolf-app.service — Systemd unit per il server Wolf POS (headless / background)
+#
+# Installazione:
+#   sudo cp wolf-app.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable wolf-app
+#   sudo systemctl start wolf-app
+#
+# Stato:
+#   sudo systemctl status wolf-app
+#
+# Log:
+#   sudo journalctl -u wolf-app -f
+#
+# NOTA: modifica User= e WorkingDirectory= con il percorso corretto
+# ─────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=Wolf POS — Backend FastAPI
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ludo
+WorkingDirectory=/home/ludo/Scrivania/WOLF APP/wolf app/new
+Environment=ENVIRONMENT=production
+ExecStart=/home/ludo/Scrivania/WOLF APP/wolf app/new/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1 --log-level warning
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
